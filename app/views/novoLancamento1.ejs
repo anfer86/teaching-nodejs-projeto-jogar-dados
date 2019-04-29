@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Projeto Jogar Dados</title>
+</head>
+<body>
+
+<main>
+
+	<h1>Projeto Jogar Dados</h1>
+
+	<p>Pontuação acumulada: <%= pontosAcumulados %></p> 
+
+	<p>Número de lançamentos: <%= nLancamentos %></p> 
+	
+	<p>Lançamento: <%= lancamento %></p> 
+
+	<p>Pontuação do lançamento: <%= pontosLancamento %></p> 
+
+	<button type="button" id="buttonLancarDados">Lançar Dados</button>	
+
+	<button type="button" id="buttonReiniciarJogo">Reiniciar</button>	
+
+	<button type="button" id="buttonEncerrarJogo">Encerrar</button>	
+
+</main>
+
+</body>
+
+<script src="js/jquery-3.4.0.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$('#buttonLancarDados').click(function(){
+    		location.href='lancarDados';
+    	});
+
+    	$('#buttonReiniciarJogo').click(function(){
+    		location.href='reiniciar';
+    	});
+
+    	$('#buttonEncerrarJogo').click(function(){
+    		location.href='encerrar';
+    	} );
+	});
+	
+</script>
+
+</html>

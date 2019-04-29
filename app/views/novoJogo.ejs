@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Projeto Jogar Dados</title>
+	<!-- Este é o estilo do Boostrap -->
+  	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">	
+</head>
+<body>
+
+<main>
+
+	<div class="container col-12 col-sm-8 col-md-6 m-auto bg-light text-center p-2">
+		
+		<h1>Projeto Jogar Dados</h1>
+
+		<p>Foi criado um novo jogo. Cliquei no botão para lançar os dados: </p>
+
+		<button class="btn btn-success" type="button" id="buttonLancarDados">Lançar Dados</button>	
+
+	</div>	
+
+
+</main>
+
+</body>
+
+<script src="js/jquery-3.4.0.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$('#buttonLancarDados').click(function(){
+    		location.href='lancarDados';
+    	} );
+	});
+	
+</script>
+
+</html>

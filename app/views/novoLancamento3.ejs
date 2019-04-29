@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Projeto Jogar Dados</title>
+	<!-- Este é o estilo do Boostrap -->
+  	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">		
+</head>
+<body>
+
+<main>
+
+	<div class="container col-6 bg-light text-center p-2">
+		
+		<h1>Projeto Jogar Dados</h1>
+		<div class="container">
+			
+		<div class="card-deck my-2">
+			<div class="col-6 p-2">
+				<div class="card">
+					<div class="card-header">Pontuação Acumulada</div>
+					<div class="card-body"><%= pontosAcumulados %></div>
+				</div>					
+			</div>
+			<div class="col-6 p-2">
+				<div class="card">
+					<div class="card-header">Número de Lançamentos</div>
+					<div class="card-body"><%= nLancamentos %></div>
+				</div>	
+			</div>
+			
+			<div class="col-12 p-2">			
+				<div class="card">
+					<div class="card-header">Lançamento</div>					
+					<div class="card-body">
+						<% for (var i=0; i < lancamento.length; i++){ %>
+							<img class="p-2" src="images/dado<%= lancamento[i]%>.png">						
+						<% }%>
+					</div>
+				</div>	
+			</div>
+				
+			<div class="col-6 p-2">
+				<div class="card">
+					<div class="card-header">Jogo do Lançamento</div>
+					<div class="card-body"><%= jogoLancamento %></div>
+				</div>					
+			</div>
+			<div class="col-6 p-2">
+				<div class="card">
+					<div class="card-header">Pontuação do Lançamento</div>
+					<div class="card-body"><%= pontosLancamento %></div>
+				</div>	
+			</div>
+
+			<div class="col-12 mx-auto mt-2 px-4">
+				<button type="button" class="btn btn-success btn-block" id="buttonLancarDados">Lançar Dados</button>		
+			</div>
+
+			<div class="col-6 mx-auto p-4">
+				<button type="button" class="btn btn-warning btn-block" id="buttonReiniciarJogo">Reiniciar</button>	
+			</div>
+
+			<div class="col-6 mx-auto p-4">
+				<button type="button" class="btn btn-danger btn-block" id="buttonEncerrarJogo">Encerrar</button>	
+			</div>
+		</div>
+	</div>
+
+</main>
+
+</body>
+
+<script src="js/jquery-3.4.0.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$('#buttonLancarDados').click(function(){
+    		location.href='lancarDados';
+    	});
+
+    	$('#buttonReiniciarJogo').click(function(){
+    		location.href='reiniciar';
+    	});
+
+    	$('#buttonEncerrarJogo').click(function(){
+    		location.href='encerrar';
+    	} );
+	});
+	
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Projeto Jogar Dados</title>
+	<!-- Este é o estilo do Boostrap -->
+  	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+
+<main>
+
+	<div class="container col-12 col-sm-8 col-md-6 m-auto bg-light text-center p-2">
+		
+		<h1>Projeto Jogar Dados</h1>	
+
+		<p>Clique no botão abaixo para iniciar o jogo</p>
+
+		<button class="btn btn-success" type="button" id="buttonComecar">Começar</button>
+	</div>	
+
+</main>
+
+</body>
+
+<script src="js/jquery-3.4.0.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$('#buttonComecar').click(function(){
+    		location.href='iniciar';
+    	} );
+	});
+	
+</script>
+
+</html>
