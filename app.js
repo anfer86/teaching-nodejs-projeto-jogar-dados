@@ -2,6 +2,6 @@
 var app = require('./config/server');
 
 /* Especificar a porta que nossa aplicação vai escutar */
-app.listen(3000, function(){
+app.listen(3100, function(){
 	console.log('A aplicação está online.');
 })
