@@ -1,18 +1,19 @@
 function Jogo(dados = 5, lados = 6) {
-	console.log('model: criar jogo')
+	console.log('model: executar constructor de jogo');
 	this.dados = dados;
 	this.lados = dados;
+	this.pontos = 0;
+	this.n = 0;
 }
 
 Jogo.prototype.novoJogo = function(req, res) {
-	console.log('model: iniciar e zerar pontuaçao')
+	console.log('model: novoJogo')
 	this.pontos = 0;
-	this.n = 0;
-	res.render('novoJogo');
+	this.n = 0;	
 }
 
 Jogo.prototype.lancarDados = function(){
-	console.log('model: lançar dados')
+	console.log('model: lancarDados')
 	var lancamento = [];
 	for (var i=0; i < this.dados; i++){
 		lancamento[i] = this.lancarUmDado(this.lados);
@@ -59,18 +60,22 @@ Jogo.prototype.analisarLancamento = function(lancamento){
 
 Jogo.prototype.novoLancamento = function(req, res) {
 	/* Altera o model */
-	var lancamento = this.lancarDados();	
+	console.log("model: novoLancamento");
+	var lancamento = this.lancarDados();
+	console.log("model: analiseLancamento");
 	var analiseLancamento = this.analisarLancamento(lancamento);
 	this.pontos += analiseLancamento.pontos;
 	this.n += 1;
-	/* Renderiza a view */
-	res.render('novoLancamento', {
+	/* Retorna o resultado */
+	var resultado = {
 		pontosAcumulados : this.pontos,
 		nLancamentos : this.n,		
 		lancamento : lancamento,
 		jogoLancamento : analiseLancamento.jogo,
 		pontosLancamento : analiseLancamento.pontos
-	})
+	}
+	console.log("model: prepara o resultado");
+	return resultado
 };
 
 module.exports.Jogo = Jogo;
