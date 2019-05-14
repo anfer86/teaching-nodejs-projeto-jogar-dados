@@ -4,12 +4,18 @@ function Jogo(dados = 5, lados = 6) {
 	this.lados = dados;
 	this.pontos = 0;
 	this.n = 0;
-}
+}	
 
-Jogo.prototype.novoJogo = function(req, res) {
+Jogo.prototype.novoJogo = function() {
 	console.log('model: novoJogo')
 	this.pontos = 0;
-	this.n = 0;	
+	this.n = 0;
+}
+
+Jogo.prototype.lancarUmDado = function(lados){
+	var valorAleatorio = Math.random(); // No intervalo [0,1]
+	var numero = 1 + parseInt(valorAleatorio * (lados-1) ); // No intervalo [1,6]
+	return numero;
 }
 
 Jogo.prototype.lancarDados = function(){
@@ -19,12 +25,6 @@ Jogo.prototype.lancarDados = function(){
 		lancamento[i] = this.lancarUmDado(this.lados);
 	}
 	return lancamento;
-}
-
-Jogo.prototype.lancarUmDado = function(lados){
-	var valorAleatorio = Math.random(); // No intervalo [0,1]
-	var numero = 1 + parseInt(valorAleatorio * (lados-1) ); // No intervalo [1,6]
-	return numero;
 }
 
 Jogo.prototype.contarDados = function(lancamento){
@@ -58,15 +58,14 @@ Jogo.prototype.analisarLancamento = function(lancamento){
 	return resultado;
 }
 
-Jogo.prototype.novoLancamento = function(req, res) {
-	/* Altera o model */
+Jogo.prototype.novoLancamento = function() {
 	console.log("model: novoLancamento");
 	var lancamento = this.lancarDados();
 	console.log("model: analiseLancamento");
 	var analiseLancamento = this.analisarLancamento(lancamento);
 	this.pontos += analiseLancamento.pontos;
 	this.n += 1;
-	/* Retorna o resultado */
+	console.log("model: prepara o resultado");
 	var resultado = {
 		pontosAcumulados : this.pontos,
 		nLancamentos : this.n,		
@@ -74,33 +73,40 @@ Jogo.prototype.novoLancamento = function(req, res) {
 		jogoLancamento : analiseLancamento.jogo,
 		pontosLancamento : analiseLancamento.pontos
 	}
-	console.log("model: prepara o resultado");
 	return resultado
 };
 
 module.exports.Jogo = Jogo;
 
-
+// Teste do módulo
 function testarLancamento(){
-	console.log('--- test model jogo');
+	console.log('--- test model jogo: lançar dados e analisar lançamento');
 	
 	var jogo = new Jogo();
-	jogo.iniciar();
-	var lancamento = jogo.lancarDados();
-	console.log('model: lancamento 1:', lancamento);
-	var analiseLancamento = jogo.analisarLancamento(lancamento);
-	console.log('model: analisar lancamento:', analiseLancamento);
-	jogo.pontuar(analiseLancamento);
-	console.log('model: pontos:', jogo.pontos);
-
-	var lancamento = jogo.lancarDados();
-	console.log('model: lancamento 2:', lancamento);
-	var analiseLancamento = jogo.analisarLancamento(lancamento);
-	console.log('model: analisar lancamento:', analiseLancamento);
-	jogo.pontuar(analiseLancamento);
-	console.log('model: pontos:', jogo.pontos);
+	var lancamento;
+	
+	for (var i=0; i < 5; i++){
+		lancamento = jogo.lancarDados();
+		console.log('model: lancamento ',i, lancamento);
+		console.log('model: análise do lançamento ', jogo.analisarLancamento(lancamento) );
+		}
 
 	console.log('--- end test model jogo');
 }
 
-//testarLancamento();
+function testarNovoLancamento(){
+	console.log('--- test model jogo: novo lançamento');
+	
+	var jogo = new Jogo();
+	var lancamento;
+	
+	for (var i=0; i < 3; i++){
+		resultado = jogo.novoLancamento();
+		console.log('model: resultado lancamento ', resultado);		
+		}
+
+	console.log('--- end test model jogo');
+}
+
+testarLancamento();
+testarNovoLancamento();
