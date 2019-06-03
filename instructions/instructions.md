@@ -188,7 +188,7 @@ Existe uma dúvida comum ao implementar o modelo *MVC* que é quem é o respons�
 
 Como vimos no final da última etapa, no arquivo `routes.js` da pasta `/routes`, ao chegar a requisição via método `GET` para a rota `/iniciar` estamos pedindo para um controller iniciar um jogo. Por sua vez, esse controller deverá criar garantir que uma instância do model seja criada e que a pontuação esteja zerada para, posteriormente, realizar lançamento de dados.
 
-Com isso, vamos criar o nosso primeiro controller. Criar um arquivo chamado `jogo.js` dentro da pasta controller, com o seguinte código:
+Com isso, vamos criar o nosso primeiro controller. Criar um arquivo chamado `jogo.js` dentro da pasta `controllers`, com o seguinte código:
 ```js
 /*
 Controller jogo:
@@ -200,7 +200,7 @@ Responsável por:
 - Pedir ao model para iniciar um novo jogo
 */
 
-var model = require('../models/Jogo');
+var model = require('../models/jogo');
 var jogoModel = undefined;
 
 module.exports.iniciar = function (application, req, res) {
@@ -214,12 +214,12 @@ module.exports.iniciar = function (application, req, res) {
 
 Nesse código anotamos primeiro as responsabilidades desta parte da arquitetura no nosso projeto. Posteriormente criamos uma variável para o nosso model, chamada `jogoModel`, com valor inicial `undefined` para indicar que não temos nenhum jogo ao iniciar a nossa aplicação. Somente na execução do evento  `iniciar` é criada a primeira instância de jogo e armazenada em `jogoModel`.
 
-Para dar continuidade ao nosso trabalho precisamos criar duas coisas. A primeira é construir o `models/Jogo` e a segunda é construir a view `novoJogo` que será renderizada. Para construir o nosso model criamos um arquivo chamado `models/Jogo.js` com o seguinte conteúdo:
+Para dar continuidade ao nosso trabalho precisamos criar duas coisas. A primeira é construir o `models/jogo` e a segunda é construir a view `novoJogo` que será renderizada. Para construir o nosso model criamos um arquivo chamado `models/jogo.js` com o seguinte conteúdo:
 ```js
 function Jogo(dados = 5, lados = 6) {
     console.log('model: executar constructor de jogo');
     this.dados = dados;
-    this.lados = dados;
+    this.lados = lados;
     this.pontos = 0;
     this.n = 0;
 }
